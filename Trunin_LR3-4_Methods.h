@@ -1,5 +1,5 @@
-#ifndef _METHODS_H // Защита от повторного включения
-#define _METHODS_H
+#ifndef TRUNIN_LR3_4_METHODS_H // Защита от повторного включения
+#define TRUNIN_LR3_4_METHODS_H
 
 #include "Trunin_LR3-4_Patient.h" // Подключаем заголовочный файл с определением класса Patient
 #include <string>
@@ -28,4 +28,6 @@ void sortPatientsByAge();
 
 void inputPatient();
 void displayAllPatients();
-#endif // _METHODS_H
+
+#endif // TRUNIN_LR3_4_METHODS_H
+

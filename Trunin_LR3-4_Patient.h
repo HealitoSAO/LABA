@@ -44,7 +44,7 @@ private:
 public:
   // Конструкторы
   Patient(); // Конструктор по умолчанию
-  // Patient &operator=(Patient &&) = delete;
+  Patient &operator=(Patient &&) = delete;
   Patient(const string &name, int age, const vector<string> &diagnoses = {},
           const vector<int> &healthRatings = {})
       : name(name), age(age), diagnoses(diagnoses), healthRatings(healthRatings) {} // Параметризованный конструктор

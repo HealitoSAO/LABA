@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <functional>
 #include <iostream>
+#include <string>
 using namespace std;
 
 // Инициализация глобального вектора
@@ -135,9 +136,9 @@ void demonstrateMethods() {
   Patient q4 = patients[q4_index];
 
   cout << endl << "Comparing patients by year of birth: " << endl;
-  if (q4 < q3) {
+  if (q4.getAge() < q3.getAge()) {
       cout << q3.getName() << " is older than " << q4.getName() << endl;
-  } else if (q4 < q3) {
+  } else if (q4.getAge() > q3.getAge()) {
       cout << q4.getName() << " is older than " << q3.getName() << endl;
   } else {
       cout << q3.getName() << " and " << q4.getName()
@@ -153,7 +154,7 @@ void demonstrateMethods() {
   if (q5.averageHealth() > q6.averageHealth()) {
       cout << q5.getName() << " has a higher average health rating than "
            << q6.getName() << endl;
-  } else if (q5 < q6) {
+  } else if (q5.averageHealth() < q6.averageHealth()) {
       cout << q6.getName() << " has a higher average health rating than "
            << q5.getName() << endl;
   } else {

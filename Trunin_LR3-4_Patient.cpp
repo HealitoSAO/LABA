@@ -79,11 +79,6 @@ double Patient::averageHealth() const {
          healthRatings.size(); // Средняя оценка общего состояния
 }
 
-// bool Patient::operator>(const Patient &other) const {
-//   return averageHealth() > other.averageHealth(); // Сравнение по средней
-//                                                   // оценке общего состояния
-// }
-
 Patient Patient::operator+(const Patient &other) const {
   // Создаем новый объект Patient с суммой параметров
   std::vector<std::string> combinedDiagnoses = diagnoses;
@@ -119,7 +114,6 @@ Patient Patient::operator++(int) {
   age++;
   return temp;
 }
-
 Patient &Patient::operator&=(const Patient &other) {
   if (this != &other) {
     name = other.name;

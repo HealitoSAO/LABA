@@ -3,6 +3,7 @@
 #include <ctime>
 #include <functional>
 #include <iostream>
+#include <limits>
 #include <map>
 
 using namespace std;
@@ -15,8 +16,13 @@ struct MenuItem {
 
 // Функция для ввода номера с контролем корректности
 int EnterNumber(unsigned &choice, const string &prompt) {
-  cout << prompt;
   cin >> choice;
+  while (cin.fail() || choice <= 0 || choice > 5) {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << prompt;
+    cin >> choice;
+  }
   return choice;
 }
 
@@ -62,3 +68,4 @@ int main() {
   }
   return 0; // Завершение программы
 }
+
