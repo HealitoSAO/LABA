@@ -25,11 +25,6 @@ void EnterString(string &varLink, const string &label) {
 void inputPatient() {
   Patient p;
 
-  // Ввод ID пациента (если вы добавили поле id в Patient)
-  int id;
-  EnterNumber(id, "Enter patient ID: ");
-  p.setId(id); // Предполагая, что вы добавили метод setId()
-
   // Ввод имени пациента
   string name;
   EnterString(name, "Enter patient name: ");
@@ -54,7 +49,9 @@ void inputPatient() {
   EnterNumber(numHealthRatings, "Enter number of health ratings: ");
   vector<int> healthRatings(numHealthRatings);
   for (int i = 0; i < numHealthRatings; ++i) {
-      EnterNumber(healthRatings[i], "Enter health rating " + to_string(i + 1) + ": ");
+      int rating;
+      EnterNumber(rating, "Enter health rating " + to_string(i + 1) + ": ");
+      healthRatings[i] = rating;
   }
   p.setHealthRatings(healthRatings);
 
@@ -122,8 +119,8 @@ void demonstrateMethods() {
   cout << "Demonstrating methods:" << endl;
 
   if (patients.empty()) {
-    cout << "No patients to demonstrate methods." << endl;
-    return;
+      cout << "No patients to demonstrate methods." << endl;
+      return;
   }
 
   int q1_index = getValidIndex();
@@ -139,12 +136,12 @@ void demonstrateMethods() {
 
   cout << endl << "Comparing patients by year of birth: " << endl;
   if (q4 < q3) {
-    cout << q3.getName() << " is older than " << q4.getName() << endl;
+      cout << q3.getName() << " is older than " << q4.getName() << endl;
   } else if (q4 < q3) {
-    cout << q4.getName() << " is older than " << q3.getName() << endl;
+      cout << q4.getName() << " is older than " << q3.getName() << endl;
   } else {
-    cout << q3.getName() << " and " << q4.getName()
-         << " are from the same year" << endl;
+      cout << q3.getName() << " and " << q4.getName()
+           << " are from the same year" << endl;
   }
 
   cout << endl << "Comparing patients by average health rating: " << endl;
@@ -153,64 +150,16 @@ void demonstrateMethods() {
   Patient q5 = patients[q5_index];
   Patient q6 = patients[q6_index];
 
-  if (q5 > q6) {
-    cout << q5.getName() << " has a higher average health rating than "
-         << q6.getName() << endl;
-  } else if (q6 > q5) {
-    cout << q6.getName() << " has a higher average health rating than "
-         << q5.getName() << endl;
+  if (q5.averageHealth() > q6.averageHealth()) {
+      cout << q5.getName() << " has a higher average health rating than "
+           << q6.getName() << endl;
+  } else if (q5 < q6) {
+      cout << q6.getName() << " has a higher average health rating than "
+           << q5.getName() << endl;
   } else {
-    cout << q5.getName() << " and " << q6.getName()
-         << " have the same average health rating" << endl;
+      cout << q5.getName() << " and " << q6.getName()
+           << " have the same average health rating" << endl;
   }
-
-  cout << endl << "Displaying all patients:" << endl;
-  displayAllPatients();
-  cout << endl;
-
-  cout << endl << "Sum: " << endl;
-  int s1_index = getValidIndex();
-  int s2_index = getValidIndex();
-
-  Patient s1 = patients[s1_index];
-  Patient s2 = patients[s2_index];
-  Patient s4 = s1 + s2;
-  cout << "The sum of " << s1.getName() << " and " << s2.getName() << " is "
-       << s4.getName() << endl;
-  cout << s4;
-  patients.push_back(s4);
-
-  cout << endl << "Displaying all patients:" << endl;
-  displayAllPatients();
-  cout << endl;
-
-  cout << endl << "Postfix increment:" << endl;
-  int i5_index = getValidIndex();
-
-  Patient i5 = patients[i5_index];
-  Patient i6 = i5++;
-  cout << i6.getAge() << " is the same as " << i5.getAge() << endl;
-  patients.push_back(i6);
-
-  cout << endl << "Displaying all patients:" << endl;
-  displayAllPatients();
-  cout << endl;
-
-  cout << endl << "Prefix increment:" << endl;
-  int i7_index = getValidIndex();
-  Patient i7 = patients[i7_index];
-  Patient i8 = ++i7;
-  cout << i8.getAge() << " is the same as " << i7.getAge() << endl;
-  patients.push_back(i8);
-
-  cout << endl << "Displaying all patients:" << endl;
-  displayAllPatients();
-  cout << endl;
-
-  cout << endl << "averageHealthRating:" << endl;
-  int a8_index = getValidIndex();
-  Patient p8 = patients[a8_index];
-  cout << p8.averageHealth() << endl;
 }
 
 void sortPatientsByYearBirth() {
@@ -219,4 +168,3 @@ void sortPatientsByYearBirth() {
             [](const Patient &a, const Patient &b) { return a.getAge() < b.getAge(); });
   displayAllPatients();
 }
-
